@@ -10,7 +10,7 @@ module.exports = {
     libraryTarget: 'this'
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({minimize: true})
+    // new webpack.optimize.UglifyJsPlugin({minimize: true})
   ],
   module: {
     preLoaders: [
