@@ -2,14 +2,27 @@
 
 Google Apps ScriptでのSpreadSheetでMongoDBのクエリlikeに操作する
 
+## Install
+
+```sh
+$ npm install
+```
+
+## Using
+
 ```javascript
 const GSheet = require('gsheet');
-const sheet = new GSheet({sheetName: 'Sheet1', row: 1, column: 1, schema: jsonSchema});
-sheet.find();
-sheet.findOne();
-sheet.insert();
-sheet.update();
-sheet.remove({});
+const sheet = new GSheet({sheets: ['list', 'content', 'shop', 'wear', 'interior', 'gacha']})
+sheet.list.find({}).skip(21).toArray((err, list) => {
+  console.log(err, list);
+});
+sheet.content.insert([], (err) => {
+  console.log(err);
+});
+// insertはシートが存在したら追加で存在しなければ新規作成にするかな
+sheet.content.update({}, {}, (err) => {
+  console.log(err);
+});
 ```
 
 ## API
