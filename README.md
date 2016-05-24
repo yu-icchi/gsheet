@@ -28,6 +28,8 @@ sheet.remove({});
 - schema
 JSONSchemaで定義し、シートから読み込み時にはデータの型変換やデフォルトの代入などをおこない、更新時には適切なデータが存在するかのチェックを行う
 
+PRIMARY KEYが必要かもしれない
+
 #### find(query, fields)
 
 - fields
