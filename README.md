@@ -16,11 +16,7 @@ const sheet = new GSheet({sheets: ['list', 'content', 'shop', 'wear', 'interior'
 sheet.list.find({}).skip(21).toArray((err, list) => {
   console.log(err, list);
 });
-sheet.content.insert([], (err) => {
-  console.log(err);
-});
-// insertはシートが存在したら追加で存在しなければ新規作成にするかな
-sheet.content.update({}, {}, (err) => {
+sheet.content.saveValues([], (err) => {
   console.log(err);
 });
 ```
@@ -43,7 +39,7 @@ JSONSchemaで定義し、シートから読み込み時にはデータの型変�
 
 PRIMARY KEYが必要かもしれない
 
-#### find(query, fields)
+#### find(query, fields, options)
 
 - fields
 オプション指定
@@ -59,43 +55,9 @@ sheet.find({}, {}).forEach((data, cell, next) => {
 }, callback);
 ```
 
-#### findOne(query, fields, callback)
+#### save()
 
-```javascript
-const GSheet = require('gsheet');
-const sheet = new GSheet({sheetName: 'Sheet1', row: 1, column: 1, schema: jsonSchema});
-sheet.findOne({}, {}, () => {
-  callback();
-});
-```
-
-#### insert(data, callback)
-
-```javascript
-const GSheet = require('gsheet');
-const sheet = new GSheet({sheetName: 'Sheet1', row: 1, column: 1, schema: jsonSchema});
-sheet.insert([
-  {name: '', price: 120, id: '', order: 1},
-  {name: '', price: 170, id: '', order: 2}
-], callback);
-```
-
-#### update(query, update, callback)
-
-```javascript
-const GSheet = require('gsheet');
-const sheet = new GSheet({sheetName: 'Sheet1', row: 1, column: 1, schema: jsonSchema});
-sheet.update({}, {
-  $set: {
-    name: 'name',
-    price: 120,
-    id: 'id',
-    order: 3
-  }
-}, callback);
-```
-
-#### remove(query, callback)
+#### remove(query)
 
 ```javascript
 const GSheet = require('gsheet');
@@ -111,10 +73,9 @@ sheet.remove({}, callback);
 - $lt
 - $lte
 - $ne
-- $or
 - $and
+- $or
 - $not
-- $nor
 
 ### SpreadSheet用のオペレーター
 
