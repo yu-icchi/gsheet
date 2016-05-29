@@ -18,7 +18,7 @@ gulp.task('clean', (callback) => {
 gulp.task('endpoint', ['clean'], () => {
   let endpoint = '/**\n * end point\n */\n';
   _.forEach(lib, (func, name) => {
-    endpoint += `function ${name}() {}`;
+    endpoint += `function ${name}() {}\n`;
   });
   return file('endpoint.js', endpoint, {src: true})
     .pipe(gulp.dest('./dist'));
