@@ -34,26 +34,29 @@ describe('selector', () => {
     //   poo: {$lt: 20},
     //   pho: {$lte: 20}
     // };
-    // query = {
-    //   poo: 10,
-    //   $and: [
-    //     {
-    //       $or: [
-    //         {age: 21}, {goo: 77}
-    //       ]
-    //     },
-    //     {name: 'value'}
-    //   ]
-    // };
+    query = {
+      poo: 10,
+      $and: [
+        {
+          $or: [
+            {age: 20}, {age: 21}
+          ]
+        },
+        {name: 'value'}
+      ]
+    };
     // query = {
     //   name: {$exists: true}
     // };
     // query = {
     //   name: new RegExp('^val')
     // };
-    query = {
-      name: {$nin: ['value']}
-    };
+    // query = {
+    //   name: {$in: ['value', 'value2']}
+    // };
+    // query = {
+    //   $or: [{name: 'value1'}, {name: 'value2'}]
+    // };
     const obj = {
       name: 'value',
       age: 21,
